@@ -62,3 +62,14 @@ export { CardSection };
 ```
 export { Header };
 ```
+
+## 003 Add the app *header*
+* Now the reusable components are available. We will use the *Header* component.
+* Inside *src/app.js* `import { Header } from './components/common';`.
+* In the *App* return, nest a *Header* inside the *View* tag.
+```
+<View>
+    <Header headerText="Authentication" />
+    <Text>An App!</Text>
+</View>
+```
