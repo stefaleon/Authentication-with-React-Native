@@ -73,3 +73,22 @@ export { Header };
     <Text>An App!</Text>
 </View>
 ```
+
+## 004 Setup a *Firebase* project
+* Login to *Firebase*, create an authentication project and enable the *Email/Password* sign-in method.
+* Install the *firebase* package and import the library inside *src/app.js*.
+```
+import firebase from 'firebase';
+```
+* We will initialize *firebase* by use of the lifecycle method *componentDidMount*. Copy the configuration object from the *Web Setup* menu in the Firebase project page and use it with the *initializeApp* Firebase method.
+```
+componentDidMount() {
+    firebase.initializeApp({
+        apiKey: 'AIzaSyBSTxh2St7k7b6AiVglK8oEXqwOqM6PjrU',
+        authDomain: 'auth-61698.firebaseapp.com',
+        databaseURL: 'https://auth-61698.firebaseio.com',
+        storageBucket: 'auth-61698.appspot.com',
+        messagingSenderId: '909061318914'
+    });
+}
+```
