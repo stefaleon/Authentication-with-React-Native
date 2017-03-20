@@ -92,3 +92,41 @@ componentDidMount() {
     });
 }
 ```
+
+## 005 Create the *LoginForm* component
+* Inside *src/components* create the file *LoginForm.js*.
+* The *LoginForm* component will contain three *CardSection* components. One for the email, one for the password and one for the login button. We will import and use the *Button*, *Card* and *CardSection* components.
+
+```
+import React, { Component } from 'react';
+import { View } from 'react-native';
+import { Button, Card, CardSection } from './common';
+
+class LoginForm extends Component {
+    render() {
+        return (
+            <Card>
+                <CardSection />
+                <CardSection />
+                <CardSection>
+                    <Button>
+                        Log in                        
+                    </Button>
+                </CardSection>
+            </Card>
+        );
+    }
+}
+
+export default LoginForm;
+```
+* Inside *components/app.js*, import *LoginForm* and show it instead of the *Text* tag.
+```
+import LoginForm from './components/LoginForm';
+```
+```
+<View>
+    <Header headerText="Authentication" />
+    <LoginForm />
+</View>
+```
