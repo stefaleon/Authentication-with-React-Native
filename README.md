@@ -130,3 +130,29 @@ import LoginForm from './components/LoginForm';
     <LoginForm />
 </View>
 ```
+## 006 Add a *TextInput*
+* Import the *TextInput* component and add it inside the first *CardSection*. Add a styling property in order to make it visible.
+```
+import { TextInput } from 'react-native';
+```
+```
+<CardSection>
+    <TextInput style={{ height: 20, width: 100 }}/>
+</CardSection>
+```
+* Initialize the state object to have a single property of *text*. The initial value will be an empty string.
+```
+state = { text: '' };
+```
+* Add the *onChangeText* prop and pass a function to it. The function is called with the *text* parameter and sets this value to the *text* piece of state.
+```
+onChangeText={text => this.setState({ text })}
+```
+* Add the *value* prop and set its value to *this.state.text*. Now the state maintains the input value, the value of the input is controlled by the current state, we have a *state-controlled-component*.
+```
+<TextInput
+    value={this.state.text}
+    onChangeText={text => this.setState({ text })}
+    style={{ height: 20, width: 100 }}
+/>
+```
