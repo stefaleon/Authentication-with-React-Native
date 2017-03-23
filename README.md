@@ -156,3 +156,41 @@ onChangeText={text => this.setState({ text })}
     style={{ height: 20, width: 100 }}
 />
 ```
+
+## 007 Make a reusable input component
+* In *src/components/common*, create *Input.js*.
+
+```
+import React from 'react';
+import { TextInput, View, Text } from 'react-native';
+
+const Input = ({ label, value, onChangeText }) => {
+    return (
+        <View>
+            <Text>{label}</Text>
+            <TextInput
+                value={value}
+                onChangeText={onChangeText}
+                style={{ height: 20, width: 100 }}
+            />
+        </View>
+    );
+};
+
+export { Input };
+```
+* Add the relative helper inside *index.js*.
+```
+export * from './Input';
+```
+* In *LoginForm.js* refactor the imports and replace *TextInput* with *Input*. Also pass the value *"Email"* to the *label* prop.
+```
+import { Button, Card, CardSection, Input } from './common';
+```
+```
+<Input
+    label="Email"
+    value={this.state.text}
+    onChangeText={text => this.setState({ text })}
+/>
+```
