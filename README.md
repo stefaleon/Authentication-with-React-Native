@@ -194,3 +194,50 @@ import { Button, Card, CardSection, Input } from './common';
     onChangeText={text => this.setState({ text })}
 />
 ```
+
+## 008 Style the *Input* component
+* Add the *styles* object. Style an *inputStyle*, a *labelStyle* and a *containerStyle*.
+```
+const styles = {
+    inputStyle: {
+        color: '#000',
+        paddingRight: 5,
+        paddingLeft: 5,
+        fontSize: 18,
+        lineHeight: 23,
+        flex: 2
+    },
+    labelStyle: {
+        fontSize: 18,
+        paddingLeft: 20,
+        flex: 1
+    },
+    containerStyle: {
+        height: 40,
+        flex: 1,
+        flexDirection: 'row',
+        align: 'center'
+    }
+};
+```
+* Pull the styles inside *Input* with destructuring and use them.
+```
+const { inputStyle, labelStyle, containerStyle } = styles;
+```
+```
+<View style={containerStyle}>
+    <Text style={labelStyle}>{label}</Text>
+    <TextInput
+        placeholder={placeholder}
+        autoCorrect={false}
+        style={inputStyle}
+        value={value}
+        onChangeText={onChangeText}        
+    />
+</View>
+```
+* An additional prop of `autoCorrect={false}` has been passed in order to avoid autocorrecting attempts on users' email strings.
+* The *placeholder* prop has been added to the *Input* definition in order to keep the component reusable.
+```
+const Input = ({ label, value, onChangeText, placeholder }) => {
+```
