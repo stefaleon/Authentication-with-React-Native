@@ -241,3 +241,17 @@ const { inputStyle, labelStyle, containerStyle } = styles;
 ```
 const Input = ({ label, value, onChangeText, placeholder }) => {
 ```
+
+## 009 Edit *LoginForm*
+* In the *Input* call inside *LoginForm.js*, pass an email example value to the *placeholder* prop.
+```
+placeholder="user@example.com"
+```
+* Rename the state property *text* to *email* and edit the relevant calls accordingly.
+```
+state = { email: '' };
+```
+```
+value={this.state.email}
+onChangeText={email => this.setState({ email })}
+```
