@@ -255,3 +255,30 @@ state = { email: '' };
 value={this.state.email}
 onChangeText={email => this.setState({ email })}
 ```
+
+## 010 Add another *Input* for password
+* Initialize another piece of state for the password.
+```
+state = { email: '', password: '' };
+```
+* Add the *Input* for the password in the second *CardSection*.
+```
+<CardSection>
+    <Input
+        secureTextEntry
+        placeholder="password"
+        label="Password"
+        value={this.state.password}
+        onChangeText={password => this.setState({ password })}
+    />
+</CardSection>
+```
+* The *secureTextEntry* prop is being passed with a value of *true* in the password section input above.
+* Inside *src/components/common/Input.js*, an additional prop of `secureTextEntry` has been added  to the *Input* definition in order be able to enable it or disable it per case of use.
+```
+const Input = ({ label, value, onChangeText, placeholder, secureTextEntry }) => {
+```
+```
+secureTextEntry={secureTextEntry}
+```
+* The *secureTextEntry* property for the *email* section has not been set, so it is undefined and handled as false.   
