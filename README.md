@@ -282,3 +282,20 @@ const Input = ({ label, value, onChangeText, placeholder, secureTextEntry }) => 
 secureTextEntry={secureTextEntry}
 ```
 * The *secureTextEntry* property for the *email* section has not been set, so it is undefined and handled as false.   
+
+## 011 Login a user
+* Define the *onPress* prop for the login button, assign to it the *onButtonPress* helper method for a callback function and bind the context.
+```
+<Button onPress={this.onButtonPress.bind(this)}>
+```
+* Import *firebase* and use the *auth().signInWithEmailAndPassword* method to authenticate the user signing in. Its will be passed the *this.state.email* and *this.state.password* arguments.
+```
+import firebase from 'firebase';
+```
+```
+onButtonPress() {
+    const { email, password } = this.state;
+
+    firebase.auth().signInWithEmailAndPassword(email, password);
+}
+```
