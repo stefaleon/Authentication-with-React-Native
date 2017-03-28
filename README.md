@@ -299,3 +299,27 @@ onButtonPress() {
     firebase.auth().signInWithEmailAndPassword(email, password);
 }
 ```
+
+## 012 Handle login error
+* We will use the promise that is returned by the sign-in method in order to handle failed attempts cases.
+* After failing once, we will try to create a user with the *auth().createUserWithEmailAndPassword* method.
+```
+firebase.auth().signInWithEmailAndPassword(email, password)
+    .catch(() => {
+        firebase.auth().createUserWithEmailAndPassword(email, password);
+    });
+```
+* If user creation fails too, we will chain on another *catch* and go on with showing an error. First we add the *error* piece of state and initialize it to an empty string.
+```
+state = { email: '', password: '', error: '' };
+```
+* Then we add the next *catch*, using the promise that is created by the create-user method.
+```
+firebase.auth().signInWithEmailAndPassword(email, password)
+    .catch(() => {
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+            .catch(() => {
+                this.setState({ error: 'Authentication failed.' });
+            });
+    });
+```
