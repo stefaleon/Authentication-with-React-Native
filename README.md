@@ -323,3 +323,21 @@ firebase.auth().signInWithEmailAndPassword(email, password)
             });
     });
 ```
+
+## 013 Display and clear the error message
+* Import the *Text* component and add a tag before the button *CardSection*. It will contain `{this.state.error}` which will be empty by default and populated when there is a problem. Style it so that it is noticeable.
+```
+<Text style={styles.errorTextStyle}>
+    {this.state.error}
+</Text>
+```
+```
+const styles = {
+    errorTextStyle: {
+        fontSize: 20,
+        alignSelf: 'center',
+        color: 'red'        
+    }
+};
+```
+* Inside the *onButtonPress* helper, add `this.setState({ error: '' });` so that the screen is cleared of the error message when the button is tapped again.
