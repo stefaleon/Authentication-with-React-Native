@@ -341,3 +341,42 @@ const styles = {
 };
 ```
 * Inside the *onButtonPress* helper, add `this.setState({ error: '' });` so that the screen is cleared of the error message when the button is tapped again.
+
+## 014 Create a spinner component
+* Inside *src/components/common* create the *Spinner.js* file. Add the functional component boilerplate.
+
+```
+import React from 'react';
+import { View } from 'react-native';
+
+const Spinner = () => {
+    return (
+        <View />
+    );
+};
+
+export { Spinner };
+```
+* Add the pass-through statement `export * from './Spinner';` inside *index.js*.
+* We will use the *react-native* default spinner, so we import *ActivityIndicator*. Call it with a default value of 'large' given to its *size* property. Add some styling to center it.
+```
+import { View, ActivityIndicator } from 'react-native';
+```
+```
+const Spinner = ({ size }) => {
+    return (
+        <View style={styles.spinnerStyle}>
+            <ActivityIndicator size={size || 'large'} />
+        </View>
+    );
+};
+```
+```
+const styles = {
+    spinnerStyle:{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    }
+};
+```
