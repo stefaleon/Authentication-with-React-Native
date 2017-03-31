@@ -413,3 +413,31 @@ renderButton() {
     {this.renderButton()}
 </CardSection>
 ```
+
+## 016 Handle successful login
+* Create the *onLoginSuccess* helper method, which will handle the case in which the user successfully signs in. It will be clearing out error messages, setting loading state to false and cleaning out the form.
+```
+onLoginSuccess() {
+    this.setState({
+        email: '',
+        password: '',
+        loading: false,
+        error: ''
+    });
+}
+```
+* Then call it with *then* in the promise returned from *auth().signInWithEmailAndPassword*. Keep the *this* context binded. Also call it in the promise returned from *auth().createUserWithEmailAndPassword*. Finally extract the fail case code from the catch case to the *onLoginFail* method and call the binded helper in the catch case.
+```
+firebase.auth().signInWithEmailAndPassword(email, password)
+    .then(this.onLoginSuccess.bind(this))
+    .catch(() => {
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then(this.onLoginSuccess.bind(this))
+            .catch(this.onLoginFail.bind(this));
+    });
+```
+```
+onLoginFail() {
+    this.setState({ error: 'Authentication failed.', loading: false });
+}
+```
