@@ -373,10 +373,43 @@ const Spinner = ({ size }) => {
 ```
 ```
 const styles = {
-    spinnerStyle:{
+    spinnerStyle: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
     }
 };
+```
+
+## 015 Toggle between button and spinner
+* Inside *src/components/LoginForm*, add the *loading* piece of state, defaulting it to *false*.
+```
+state = { email: '', password: '', error: '', loading: false };
+```
+* On button press, set the *loading* state to *true*.
+```
+this.setState({ error: '', loading: true });
+```
+* Import *Spinner*.
+```
+import { Button, Card, CardSection, Input, Spinner } from './common';
+```
+* Create the *renderButton* helper method to handle the conditional rendering of either the button or the spinner.
+```
+renderButton() {
+    if (this.state.loading) {
+        return <Spinner size="small" />;
+    }
+    return (
+        <Button onPress={this.onButtonPress.bind(this)}>
+            Log in
+        </Button>            
+    );
+}
+```
+* Call *renderButton* in place of the button in the last *CardSection*.
+```
+<CardSection>
+    {this.renderButton()}
+</CardSection>
 ```
