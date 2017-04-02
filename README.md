@@ -441,3 +441,20 @@ onLoginFail() {
     this.setState({ error: 'Authentication failed.', loading: false });
 }
 ```
+
+## 017 Handle the authentication event
+* Inside *src/app.js*, we will use the *onAuthStateChanged* method from the *firebase.auth()* object, in order to display different screens in our app depending on whether a user is logged in, after successful authentication.
+* Add the *loggedIn* piece of state, which defaults to *false*.
+```
+state = { loggedIn: false };
+```
+* Inside the *componentDidMount* method, call *onAuthStateChanged*. Its callback will be called with a single argument that we will call *user* and it will contain a conditional statement that will be setting the *loggedIn* state.
+```
+firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+        this.setState({ loggedIn: true });
+    } else {
+        this.setState({ loggedIn: false });    
+    }
+});
+```
