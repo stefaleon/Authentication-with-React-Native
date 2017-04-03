@@ -458,3 +458,40 @@ firebase.auth().onAuthStateChanged((user) => {
     }
 });
 ```
+
+## 018 Render content conditionally
+* Create the *renderContent* helper function, which returns a logout button if there is a logged in user, or the login form screen otherwise. Import the *Button* component in the *App* module first.
+```
+import { Header, Button } from './components/common';
+```
+```
+renderContent() {
+    if (this.state.loggedIn) {
+        return (
+            <Button>
+                Log out
+            </Button>
+        );
+    }
+    return <LoginForm />;
+}
+```
+* In order to handle more nicely the intermediate stage between the form submission and the firebase response, during which it is uncertain whether the authentication is successful or not, we will default the *loggedIn* state to *null* and refactor *renderContent* with a switch statement. We will be displaying a spinner during the intermediate stage, so we will import this component as well.
+```
+state = { loggedIn: null };
+```
+```
+import { Header, Button, Spinner } from './components/common';
+```
+```
+renderContent() {
+    switch (this.state.loggedIn) {
+        case true:
+            return <Button>Log out</Button>;
+        case false:
+            return <LoginForm />;
+        default:
+            return <Spinner size="large" />;
+    }        
+}
+```
