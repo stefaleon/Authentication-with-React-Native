@@ -495,3 +495,11 @@ renderContent() {
     }        
 }
 ```
+
+## 019 Logout
+* Add the *onPress* property to the logout button. Assign a function that calls the *signOut* method of the *firebase.auth()* object.
+```
+<Button onPress={() => firebase.auth().signOut()}>
+    Log out
+</Button>
+```
